@@ -1,7 +1,9 @@
+import { Calls } from "./pages/Calls";
+
 export const App = () => {
   return (
     <div className="App">
-      <h1>Hello</h1>
+      <Calls />
     </div>
   );
 };
