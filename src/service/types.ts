@@ -9,6 +9,7 @@ export interface Call {
   in_out: number;
   date: string;
   person_avatar: string;
+  person_name: string;
   from_number: string;
   source?: string;
   estimation?: string;

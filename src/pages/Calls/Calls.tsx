@@ -1,8 +1,9 @@
-import { useEffect, useMemo} from 'react';
+import { useEffect, useMemo } from 'react';
 import styles from './styles.module.scss';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { RootState } from '../../store/store';
 import { getCalls } from '../../store/action-creators/calls';
+import { CallsTable } from '../../components';
 
 export const Calls = () => {
   const calls = useAppSelector((state: RootState) => state.calls.data);
@@ -23,5 +24,9 @@ export const Calls = () => {
     dispatch(getCalls(callsData));
   }, [callsData, dispatch]);
 
-  return <main className={styles.calls}>{JSON.stringify(calls)}</main>;
+  return (
+    <main className={styles.calls}>
+      <CallsTable calls={calls} />
+    </main>
+  );
 };

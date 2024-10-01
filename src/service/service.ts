@@ -12,11 +12,12 @@ export const getCallsAPI = async ({
   if (dateEnd) params.append('date_end', dateEnd);
   if (callType !== '') params.append('in_out', callType === 1 ? '1' : '0');
 
-  const url = `${import.meta.env.VITE_API_URL}/mango/getList?${params.toString()}`;
-
   return await axios.post(
-    url,
+    `${import.meta.env.VITE_API_URL}/mango/getList`,
     {},
-    { headers: { Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}` } }
+    {
+      params: params,
+      headers: { Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}` },
+    }
   );
 };
