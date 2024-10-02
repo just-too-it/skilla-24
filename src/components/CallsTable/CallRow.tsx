@@ -7,6 +7,7 @@ import styles from './styles.module.scss';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { useEffect, useState } from 'react';
 import { getAudioRecord } from '../../store/action-creators/calls';
+import { AudioPlayer } from '../AudioPlayer/AudioPlayer';
 
 export const CallRow = ({ call }: { call: Call }) => {
   const dispatch = useAppDispatch();
@@ -56,7 +57,7 @@ export const CallRow = ({ call }: { call: Call }) => {
       </td>
       {playingAudioId && (
         <td className={clsx(styles.cell, styles.player)}>
-          <audio controls src={playingAudioId} />
+          <AudioPlayer src={playingAudioId} />
         </td>
       )}
     </tr>

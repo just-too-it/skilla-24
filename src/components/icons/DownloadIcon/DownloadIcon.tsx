@@ -2,21 +2,20 @@ import { FC } from 'react';
 
 import { IconProps } from '../types';
 
-export const CallArrowIcon: FC<IconProps> = ({ fill, className }) => {
+export const DownloadIcon: FC<IconProps> = ({ fill }) => {
   return (
     <svg
-      width="12.521744"
-      height="12.521729"
-      viewBox="0 0 12.5217 12.5217"
+      width="13.000000"
+      height="16.000000"
+      viewBox="0 0 13 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
-      className={className}
     >
       <defs />
       <path
         id="Vector"
-        d="M12.52 1.17L11.34 0L1.66 9.67L1.66 4.17L0 4.17L0 12.52L8.34 12.52L8.34 10.85L2.84 10.85L12.52 1.17Z"
+        d="M0 16L13 16L13 14.11L0 14.11L0 16ZM13 5.64L9.28 5.64L9.28 0L3.71 0L3.71 5.64L0 5.64L6.5 12.23L13 5.64Z"
         fill={fill}
         fillOpacity="1.000000"
         fillRule="nonzero"
