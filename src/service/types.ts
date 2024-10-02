@@ -14,9 +14,20 @@ export interface Call {
   source?: string;
   estimation?: string;
   time: number;
+  record: string;
+  partnership_id: string;
 }
 
 export interface CallsResponse {
   total_rows: number;
   results: Call[];
+}
+
+export interface RecordParams {
+  record: string;
+  partnershipId: string;
+}
+
+export interface AudioRecord {
+  [key: string]: string;
 }

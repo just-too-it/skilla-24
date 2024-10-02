@@ -1,26 +1,31 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { Call, CallsParams, CallsResponse } from '../../../service/types';
-import { getCalls } from '../../action-creators/calls';
+import {
+  AudioRecord,
+  Call,
+  CallsParams,
+  CallsResponse,
+} from '../../../service/types';
+import { getCalls, getAudioRecord } from '../../action-creators/calls';
 
 export interface CallsState {
   data: Call[];
   status: 'loading' | 'success' | 'error';
   error: string;
-
   params: CallsParams;
+  audioRecords: AudioRecord;
 }
 
 const initialState: CallsState = {
   data: [],
   status: 'loading',
   error: '',
-
   params: {
     callType: '',
     dateStart: '',
     dateEnd: '',
   },
+  audioRecords: {},
 };
 
 export const callsSlice = createSlice({
@@ -47,6 +52,25 @@ export const callsSlice = createSlice({
       state.status = 'error';
       state.error = action.payload;
     });
+    builder.addCase(
+      getAudioRecord.fulfilled,
+      (state, action: PayloadAction<AudioRecord>) => {
+        const { record, audioUrl } = action.payload;
+
+        state.audioRecords[record] = audioUrl;
+        state.status = 'success';
+      }
+    );
+    builder.addCase(getAudioRecord.pending, (state) => {
+      state.status = 'loading';
+    });
+    builder.addCase(
+      getAudioRecord.rejected,
+      (state, action: PayloadAction<any>) => {
+        state.status = 'error';
+        state.error = action.payload;
+      }
+    );
   },
 });
 

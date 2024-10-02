@@ -1,7 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { CallsParams, CallsResponse } from '../../service/types';
-import { getCallsAPI } from '../../service/service';
+import {
+  AudioRecord,
+  CallsParams,
+  CallsResponse,
+  RecordParams,
+} from '../../service/types';
+import { getCallsAPI, getRecordAPI } from '../../service/service';
 
 export const getCalls = createAsyncThunk<CallsResponse, CallsParams>(
   'calls/getCalls',
@@ -10,7 +15,24 @@ export const getCalls = createAsyncThunk<CallsResponse, CallsParams>(
       const response = await getCallsAPI(params);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue((error as Error).message);
+      const errorMessage = (error as Error).message || 'Unknown error';
+      return thunkAPI.rejectWithValue(errorMessage);
+    }
+  }
+);
+
+export const getAudioRecord = createAsyncThunk<AudioRecord, RecordParams>(
+  'calls/getRecord',
+  async (params, thunkAPI) => {
+    try {
+      const { record } = params;
+      const { data: audioBlob } = await getRecordAPI(params);
+      const audioUrl = URL.createObjectURL(audioBlob);
+
+      return { record, audioUrl };
+    } catch (error) {
+      const errorMessage = (error as Error).message || 'Unknown error';
+      return thunkAPI.rejectWithValue(errorMessage);
     }
   }
 );
