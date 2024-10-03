@@ -3,13 +3,13 @@ import styles from './styles.module.scss';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { RootState } from '../../store/store';
 import { getCalls } from '../../store/action-creators/calls';
-import { CallsTable } from '../../components';
+import { CallsTable, Loader } from '../../components';
 
 export const Calls = () => {
-  const calls = useAppSelector((state: RootState) => state.calls.data);
+  const { data, params, status } = useAppSelector(
+    (state: RootState) => state.calls
+  );
   const dispatch = useAppDispatch();
-
-  const { params } = useAppSelector((state) => state.calls);
 
   const callsData = useMemo(
     () => ({
@@ -26,7 +26,8 @@ export const Calls = () => {
 
   return (
     <main className={styles.calls}>
-      <CallsTable calls={calls} />
+      {status === 'loading' && <Loader />}
+      {status === 'success' && <CallsTable calls={data} />}
     </main>
   );
 };
