@@ -5,45 +5,49 @@ import { Avatar } from '../Avatar';
 import { CallArrowIcon } from '../icons';
 import styles from './styles.module.scss';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { getAudioRecord } from '../../store/action-creators/calls';
 import { AudioPlayer } from '../AudioPlayer/AudioPlayer';
+import { Loader } from '../Loader';
 
 export const CallRow = ({ call }: { call: Call }) => {
   const dispatch = useAppDispatch();
-  const { audioRecords } = useAppSelector((state) => state.calls);
-  const [playingAudioId, setPlayingAudioId] = useState<string | null>(null);
-  const [isPlayerHidden, setisPlayerHidden] = useState(true);
+  const { audioRecords, statusAudio } = useAppSelector((state) => state.calls);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isPlayerClosed, setIsPlayerClosed] = useState(false);
 
   const handleRowHover = (recordId: string, partnershipId: string) => {
+    setIsHovered(true);
+
+    if (isPlayerClosed && audioRecords[recordId]) {
+      return;
+    }
+
     if (!recordId) return;
 
     if (!audioRecords[recordId]) {
       dispatch(getAudioRecord({ record: recordId, partnershipId }));
     }
 
-    setPlayingAudioId(audioRecords[recordId]);
-    setisPlayerHidden(false);
+    setIsPlayerClosed(false);
+  };
+
+  const handleRowLeave = () => {
+    setIsHovered(false);
   };
 
   const handleClosePlayer = () => {
-    setisPlayerHidden(true);
+    setIsPlayerClosed(true);
   };
 
-  useEffect(() => {
-    return () => {
-      if (playingAudioId) {
-        URL.revokeObjectURL(playingAudioId);
-      }
-    };
-  }, [playingAudioId]);
+  const audioUrl = audioRecords[call.record];
 
   return (
     <tr
       key={call.id}
       className={styles.rowCall}
       onMouseEnter={() => handleRowHover(call.record, call.partnership_id)}
-      onMouseLeave={() => setisPlayerHidden(true)}
+      onMouseLeave={handleRowLeave}
     >
       <td className={styles.cell}>
         {call.in_out === 1 ? (
@@ -62,18 +66,29 @@ export const CallRow = ({ call }: { call: Call }) => {
       <td className={clsx(styles.cell, styles.time)}>
         {getTimeFromSeconds(call.time)}
       </td>
-      {playingAudioId && (
-        <td className={styles.cell}>
-          <div
-            className={clsx({
-              [styles.player]: !isPlayerHidden,
-              [styles.playerHidden]: isPlayerHidden,
-            })}
-          >
-            <AudioPlayer src={playingAudioId} onClose={handleClosePlayer} />
-          </div>
-        </td>
-      )}
+      <td className={styles.cell}>
+        <div
+          className={clsx({
+            [styles.player]:
+              isHovered &&
+              !isPlayerClosed &&
+              (audioUrl || statusAudio === 'loading'),
+            [styles.playerHidden]: !isHovered || isPlayerClosed,
+          })}
+        >
+          {isHovered && statusAudio === 'loading' && !isPlayerClosed && (
+            <div className={styles.loader}>
+              <Loader />
+            </div>
+          )}
+          {audioUrl &&
+            statusAudio === 'success' &&
+            isHovered &&
+            !isPlayerClosed && (
+              <AudioPlayer src={audioUrl} onClose={handleClosePlayer} />
+            )}
+        </div>
+      </td>
     </tr>
   );
 };

@@ -14,6 +14,7 @@ export interface CallsState {
   error: string;
   params: CallsParams;
   audioRecords: AudioRecord;
+  statusAudio: 'loading' | 'success' | 'error';
 }
 
 const initialState: CallsState = {
@@ -26,6 +27,7 @@ const initialState: CallsState = {
     dateEnd: '',
   },
   audioRecords: {},
+  statusAudio: 'loading',
 };
 
 export const callsSlice = createSlice({
@@ -58,16 +60,16 @@ export const callsSlice = createSlice({
         const { record, audioUrl } = action.payload;
 
         state.audioRecords[record] = audioUrl;
-        state.status = 'success';
+        state.statusAudio = 'success';
       }
     );
     builder.addCase(getAudioRecord.pending, (state) => {
-      state.status = 'loading';
+      state.statusAudio = 'loading';
     });
     builder.addCase(
       getAudioRecord.rejected,
       (state, action: PayloadAction<any>) => {
-        state.status = 'error';
+        state.statusAudio = 'error';
         state.error = action.payload;
       }
     );
