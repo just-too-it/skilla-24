@@ -48,14 +48,6 @@ tr {
     &:hover {
         background: rgba(212, 223, 243, 0.17);
         cursor: pointer;
-
-        & .player {
-            display: block;
-        }
-
-        & .time {
-            visibility: hidden;
-        }
     }
 }
 
@@ -87,7 +79,7 @@ tr {
 
     &:nth-child(7) {
         width: 390px;
-        padding-right: 40px;
+        padding-right: 42px;
         text-align: end;
     }
 }
@@ -105,8 +97,12 @@ tr {
     align-items: center;
 }
 
-.player {
+.playerHidden {
     display: none;
+}
+
+.player {
+    display: block;
     position: absolute;
     right: 40px;
     top: 50%;

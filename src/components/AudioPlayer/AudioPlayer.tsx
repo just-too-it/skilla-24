@@ -2,19 +2,21 @@ import React, { useState, useRef, useEffect } from 'react';
 import styles from './styles.module.scss';
 import { getTimeFromSeconds } from '../../utils';
 import { CloseIcon, DownloadIcon, PauseIcon, PlayIcon } from '../icons';
+import { downloadFile } from '../../utils/downloadFile';
 
 interface AudioPlayerProps {
   src: string;
+  onClose: () => void;
 }
 
-export const AudioPlayer = ({ src }: AudioPlayerProps) => {
+export const AudioPlayer = ({ src, onClose }: AudioPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [duration, setDuration] = useState<number>(0);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  const togglePlay = () => {
+  const handlePlay = () => {
     if (audioRef.current) {
       if (isPlaying) {
         audioRef.current.pause();
@@ -61,7 +63,7 @@ export const AudioPlayer = ({ src }: AudioPlayerProps) => {
   }, []);
 
   return (
-    <section className={styles.audioPlayer}>
+    <article className={styles.audioPlayer}>
       <audio
         src={src}
         ref={audioRef}
@@ -71,7 +73,7 @@ export const AudioPlayer = ({ src }: AudioPlayerProps) => {
       <div className={styles.time}>
         {getTimeFromSeconds(Math.floor(duration))}
       </div>
-      <button className={styles.playButton} onClick={togglePlay}>
+      <button className={styles.playButton} onClick={handlePlay}>
         {isPlaying ? <PauseIcon fill="#002CFB" /> : <PlayIcon fill="#002CFB" />}
       </button>
 
@@ -83,12 +85,15 @@ export const AudioPlayer = ({ src }: AudioPlayerProps) => {
         value={duration > 0 ? (currentTime / duration) * 100 : 0}
         onChange={handleSeek}
       />
-      <button className={styles.downloadButton} onClick={togglePlay}>
+      <button
+        className={styles.downloadButton}
+        onClick={() => downloadFile(src)}
+      >
         <DownloadIcon />
       </button>
-      <button className={styles.closeButton} onClick={togglePlay}>
+      <button className={styles.closeButton} onClick={onClose}>
         <CloseIcon />
       </button>
-    </section>
+    </article>
   );
 };

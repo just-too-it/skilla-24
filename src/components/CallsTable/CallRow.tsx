@@ -13,6 +13,7 @@ export const CallRow = ({ call }: { call: Call }) => {
   const dispatch = useAppDispatch();
   const { audioRecords } = useAppSelector((state) => state.calls);
   const [playingAudioId, setPlayingAudioId] = useState<string | null>(null);
+  const [isPlayerHidden, setisPlayerHidden] = useState(true);
 
   const handleRowHover = (recordId: string, partnershipId: string) => {
     if (!recordId) return;
@@ -22,6 +23,11 @@ export const CallRow = ({ call }: { call: Call }) => {
     }
 
     setPlayingAudioId(audioRecords[recordId]);
+    setisPlayerHidden(false);
+  };
+
+  const handleClosePlayer = () => {
+    setisPlayerHidden(true);
   };
 
   useEffect(() => {
@@ -37,6 +43,7 @@ export const CallRow = ({ call }: { call: Call }) => {
       key={call.id}
       className={styles.rowCall}
       onMouseEnter={() => handleRowHover(call.record, call.partnership_id)}
+      onMouseLeave={() => setisPlayerHidden(true)}
     >
       <td className={styles.cell}>
         {call.in_out === 1 ? (
@@ -56,8 +63,15 @@ export const CallRow = ({ call }: { call: Call }) => {
         {getTimeFromSeconds(call.time)}
       </td>
       {playingAudioId && (
-        <td className={clsx(styles.cell, styles.player)}>
-          <AudioPlayer src={playingAudioId} />
+        <td className={styles.cell}>
+          <div
+            className={clsx({
+              [styles.player]: !isPlayerHidden,
+              [styles.playerHidden]: isPlayerHidden,
+            })}
+          >
+            <AudioPlayer src={playingAudioId} onClose={handleClosePlayer} />
+          </div>
         </td>
       )}
     </tr>
