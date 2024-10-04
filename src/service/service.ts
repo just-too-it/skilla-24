@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CallsParams, RecordParams } from './types';
+import { CallsParams, RecordParams } from '../pages/Calls/types';
 
 export const getCallsAPI = async ({
   dateStart,

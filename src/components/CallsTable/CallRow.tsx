@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { Call } from '../../service/types';
+import { Call } from '../../pages/Calls/types';
 import { getTimeFromDate, getTimeFromSeconds } from '../../utils';
 import { Avatar } from '../Avatar';
 import { CallArrowIcon } from '../icons';
@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { getAudioRecord } from '../../store/action-creators/calls';
 import { AudioPlayer } from '../AudioPlayer/AudioPlayer';
 import { Loader } from '../Loader';
+import { RatingBadge } from '../RatingBadge';
 
 export const CallRow = ({ call }: { call: Call }) => {
   const dispatch = useAppDispatch();
@@ -62,7 +63,9 @@ export const CallRow = ({ call }: { call: Call }) => {
       </td>
       <td className={styles.cell}>{call.from_number}</td>
       <td className={styles.cell}>{call.source}</td>
-      <td className={styles.cell}>???</td>
+      <td className={styles.cell}>
+        <RatingBadge type={call.estimation} />
+      </td>
       <td className={clsx(styles.cell, styles.time)}>
         {getTimeFromSeconds(call.time)}
       </td>

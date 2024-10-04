@@ -5,7 +5,7 @@ import {
   CallsParams,
   CallsResponse,
   RecordParams,
-} from '../../service/types';
+} from '../../pages/Calls/types';
 import { getCallsAPI, getRecordAPI } from '../../service/service';
 
 export const getCalls = createAsyncThunk<CallsResponse, CallsParams>(

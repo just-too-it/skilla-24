@@ -1,0 +1,29 @@
+@import '../../styles/helpers/variables.scss';
+
+.badge {
+    height: 26px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    padding: 6px 8px;
+    border-radius: 4px;
+}
+
+.bad {
+    color: $font-color-red;
+    border: 1px solid $red-color;
+    background-color: $light-red-color;
+}
+
+.good {
+    color: $font-color-primary;
+    border: 1px solid $grey-color;
+    background-color: $light-grey-color;
+}
+
+.excellent {
+    color: $font-color-green;
+    border: 1px solid $green-color;
+    background-color: $light-green-color;
+}

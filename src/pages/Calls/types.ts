@@ -12,7 +12,7 @@ export interface Call {
   person_name: string;
   from_number: string;
   source?: string;
-  estimation?: string;
+  estimation: Rating;
   time: number;
   record: string;
   partnership_id: string;
@@ -30,4 +30,10 @@ export interface RecordParams {
 
 export interface AudioRecord {
   [key: string]: string;
+}
+
+export enum Rating {
+  BAD = 'Плохо',
+  GOOD = 'Хорошо',
+  EXCELLENT = 'Отлично',
 }

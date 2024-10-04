@@ -5,7 +5,7 @@ import {
   Call,
   CallsParams,
   CallsResponse,
-} from '../../../service/types';
+} from '../../../pages/Calls/types';
 import { getCalls, getAudioRecord } from '../../action-creators/calls';
 
 export interface CallsState {

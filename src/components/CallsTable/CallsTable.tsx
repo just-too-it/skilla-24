@@ -1,12 +1,25 @@
-import { Call } from '../../service/types';
+import { Call } from '../../pages/Calls/types';
 import styles from './styles.module.scss';
 import { CallRow } from './CallRow';
+import { getRandomRating } from '../../utils/getRandomRating';
+import { useEffect, useState } from 'react';
 
 interface CallsTableProps {
   calls: Array<Call>;
 }
 
 export const CallsTable = ({ calls }: CallsTableProps) => {
+  const [callsWithRating, setCallsWithRating] = useState<Array<Call>>([]);
+
+  useEffect(() => {
+    setCallsWithRating(
+      calls.map((call) => ({
+        ...call,
+        estimation: getRandomRating(),
+      }))
+    );
+  }, []);
+
   return (
     <table className={styles.table}>
       <thead>
@@ -22,8 +35,8 @@ export const CallsTable = ({ calls }: CallsTableProps) => {
       </thead>
 
       <tbody className={styles.body}>
-        {calls.length > 0 ? (
-          calls.map((call) => <CallRow key={call.id} call={call} />)
+        {callsWithRating.length > 0 ? (
+          callsWithRating.map((call) => <CallRow key={call.id} call={call} />)
         ) : (
           <tr className={styles.NotFound}>
             <td colSpan={7}>Звонки не найдены</td>
