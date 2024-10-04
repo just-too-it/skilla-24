@@ -1,15 +1,17 @@
 import clsx from 'clsx';
+import { useState } from 'react';
+
 import { Call } from '../../pages/Calls/types';
+import { getAudioRecord } from '../../store/action-creators/calls';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { getTimeFromDate, getTimeFromSeconds } from '../../utils';
+import { AudioPlayer } from '../AudioPlayer/AudioPlayer';
 import { Avatar } from '../Avatar';
 import { CallArrowIcon } from '../icons';
-import styles from './styles.module.scss';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { useState } from 'react';
-import { getAudioRecord } from '../../store/action-creators/calls';
-import { AudioPlayer } from '../AudioPlayer/AudioPlayer';
 import { Loader } from '../Loader';
 import { RatingBadge } from '../RatingBadge';
+
+import styles from './styles.module.scss';
 
 export const CallRow = ({ call }: { call: Call }) => {
   const dispatch = useAppDispatch();

@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import styles from './styles.module.scss';
+
 import { getTimeFromSeconds } from '../../utils';
-import { CloseIcon, DownloadIcon, PauseIcon, PlayIcon } from '../icons';
 import { downloadFile } from '../../utils/downloadFile';
+import { CloseIcon, DownloadIcon, PauseIcon, PlayIcon } from '../icons';
+
+import styles from './styles.module.scss';
 
 interface AudioPlayerProps {
   src: string;

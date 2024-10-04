@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+
 import {
   AudioRecord,
   Call,
@@ -49,11 +50,14 @@ export const callsSlice = createSlice({
     builder.addCase(getCalls.pending, (state) => {
       state.status = 'loading';
     });
-    builder.addCase(getCalls.rejected, (state, action: PayloadAction<any>) => {
-      state.data = [];
-      state.status = 'error';
-      state.error = action.payload;
-    });
+    builder.addCase(
+      getCalls.rejected,
+      (state, action: PayloadAction<unknown>) => {
+        state.data = [];
+        state.status = 'error';
+        state.error = action.payload as string;
+      }
+    );
     builder.addCase(
       getAudioRecord.fulfilled,
       (state, action: PayloadAction<AudioRecord>) => {
@@ -68,9 +72,9 @@ export const callsSlice = createSlice({
     });
     builder.addCase(
       getAudioRecord.rejected,
-      (state, action: PayloadAction<any>) => {
+      (state, action: PayloadAction<unknown>) => {
         state.statusAudio = 'error';
-        state.error = action.payload;
+        state.error = action.payload as string;
       }
     );
   },

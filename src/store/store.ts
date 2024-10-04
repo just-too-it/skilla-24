@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+
 import callsReducer from './entities/calls/callsSlice';
 
 export const store = configureStore({

@@ -1,5 +1,7 @@
 import clsx from 'clsx';
+
 import { Rating } from '../../pages/Calls/types';
+
 import styles from './styles.module.scss';
 
 interface RatingBadgeProps {

@@ -1,9 +1,11 @@
 import { useEffect, useMemo } from 'react';
-import styles from './styles.module.scss';
+
+import { CallsTable, Loader } from '../../components';
+import { getCalls } from '../../store/action-creators/calls';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { RootState } from '../../store/store';
-import { getCalls } from '../../store/action-creators/calls';
-import { CallsTable, Loader } from '../../components';
+
+import styles from './styles.module.scss';
 
 export const Calls = () => {
   const { data, params, status } = useAppSelector(

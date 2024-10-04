@@ -1,8 +1,10 @@
-import { Call } from '../../pages/Calls/types';
-import styles from './styles.module.scss';
-import { CallRow } from './CallRow';
-import { getRandomRating } from '../../utils/getRandomRating';
 import { useEffect, useState } from 'react';
+
+import { Call } from '../../pages/Calls/types';
+import { getRandomRating } from '../../utils/getRandomRating';
+
+import { CallRow } from './CallRow';
+import styles from './styles.module.scss';
 
 interface CallsTableProps {
   calls: Array<Call>;
