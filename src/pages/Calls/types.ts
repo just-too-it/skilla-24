@@ -2,6 +2,8 @@ export interface CallsParams {
   dateStart: string;
   dateEnd: string;
   callType: number | string;
+  sortBy?: 'date' | 'duration' | null;
+  order?: 'ASC' | 'DESC' | null;
 }
 
 export interface Call {

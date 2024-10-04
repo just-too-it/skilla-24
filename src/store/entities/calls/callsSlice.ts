@@ -26,6 +26,8 @@ const initialState: CallsState = {
     callType: '',
     dateStart: '',
     dateEnd: '',
+    sortBy: null,
+    order: null,
   },
   audioRecords: {},
   statusAudio: 'loading',
@@ -35,8 +37,8 @@ export const callsSlice = createSlice({
   name: 'calls',
   initialState,
   reducers: {
-    setParamsCallType(state, action: PayloadAction<string>) {
-      state.params.callType = action.payload;
+    setParams(state, action: PayloadAction<Partial<CallsParams>>) {
+      state.params = { ...state.params, ...action.payload };
     },
   },
   extraReducers: (builder) => {
@@ -80,6 +82,6 @@ export const callsSlice = createSlice({
   },
 });
 
-export const { setParamsCallType } = callsSlice.actions;
+export const { setParams } = callsSlice.actions;
 
 export default callsSlice.reducer;

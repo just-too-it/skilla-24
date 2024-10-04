@@ -52,6 +52,10 @@ tr {
 }
 
 .cell {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+
     &:nth-child(1) {
         width: 95px;
         padding-left: 40px;
@@ -80,8 +84,12 @@ tr {
     &:nth-child(7) {
         width: 390px;
         padding-right: 42px;
-        text-align: end;
+        justify-content: flex-end;
     }
+}
+
+.cellHover {
+    cursor: pointer;
 }
 
 .callArrow {
@@ -101,10 +109,29 @@ tr {
     display: none;
 }
 
-.player, .loader {
+.player,
+.loader {
     display: block;
     position: absolute;
     right: 40px;
     top: 50%;
     transform: translate(0, -50%)
+}
+
+.sortIndicator {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 8px;
+}
+
+.arrowDesc,
+.arrowAsc {
+    width: 10px;
+    height: 6px;
+    background-image: url('src/assets/icons/arrow.svg');
+}
+
+.arrowAsc {
+    transform: rotate(180deg);
 }

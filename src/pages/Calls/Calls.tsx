@@ -18,6 +18,8 @@ export const Calls = () => {
       callType: params.callType,
       dateStart: params.dateStart,
       dateEnd: params.dateEnd,
+      ...(params.sortBy && { sortBy: params.sortBy }),
+      ...(params.order && { order: params.order }),
     }),
     [params]
   );
