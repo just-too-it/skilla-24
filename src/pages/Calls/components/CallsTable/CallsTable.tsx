@@ -1,10 +1,10 @@
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 
-import { Call } from '../../pages/Calls/types';
-import { setParams } from '../../store/entities/calls/callsSlice';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { getRandomRating } from '../../utils/getRandomRating';
+import { setParams } from '../../../../store/entities/calls/callsSlice';
+import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
+import { getRandomRating } from '../../../../utils/getRandomRating';
+import { Call } from '../../types';
 
 import { CallRow } from './CallRow';
 import styles from './styles.module.scss';

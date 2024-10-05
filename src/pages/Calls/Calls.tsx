@@ -1,11 +1,11 @@
 import { useEffect, useMemo } from 'react';
 
-import { CallsTable, Loader } from '../../components';
-import { Filters } from '../../components/';
+import { Loader } from '../../components';
 import { getCalls } from '../../store/action-creators/calls';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { RootState } from '../../store/store';
 
+import { CallsTable, Filters } from './components';
 import styles from './styles.module.scss';
 
 export const Calls = () => {

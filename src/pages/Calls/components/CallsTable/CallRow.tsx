@@ -1,15 +1,17 @@
 import clsx from 'clsx';
 import { useState } from 'react';
 
-import { Call } from '../../pages/Calls/types';
-import { getAudioRecord } from '../../store/action-creators/calls';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { getTimeFromDate, getTimeFromSeconds } from '../../utils';
-import { AudioPlayer } from '../AudioPlayer/AudioPlayer';
-import { Avatar } from '../Avatar';
-import { CallArrowIcon } from '../icons';
-import { Loader } from '../Loader';
-import { RatingBadge } from '../RatingBadge';
+import {
+  Avatar,
+  RatingBadge,
+  Loader,
+  AudioPlayer,
+} from '../../../../components';
+import { CallArrowIcon } from '../../../../components/icons';
+import { getAudioRecord } from '../../../../store/action-creators/calls';
+import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
+import { getTimeFromDate, getTimeFromSeconds } from '../../../../utils';
+import { Call } from '../../types';
 
 import styles from './styles.module.scss';
 
