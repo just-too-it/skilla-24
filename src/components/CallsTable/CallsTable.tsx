@@ -33,6 +33,7 @@ export const CallsTable = ({ calls }: CallsTableProps) => {
 
     dispatch(
       setParams({
+        ...params,
         sortBy: type,
         order: newOrder,
       })

@@ -1,0 +1,67 @@
+@import '../../styles/helpers/variables.scss';
+
+.dropdown {
+    width: 133px;
+    background-color: transparent;
+    position: relative;
+    text-align: left;
+}
+
+.button {
+    width: inherit;
+    font-size: 14px;
+    color: $font-color-secondary;
+    border: none;
+    background-color: transparent;
+    text-align: left;
+    cursor: pointer;
+}
+
+.options {
+    position: absolute;
+    width: inherit;
+    background-color: #fff;
+    margin-top: 12px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
+    z-index: 10;
+    overflow: hidden;
+}
+
+.option {
+    height: 32px;
+    padding: 7px 12px;
+    font-size: 12px;
+    line-height: 18px;
+    color: #2B2D33;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #DEE4FF;
+    }
+}
+
+.selectedOption {
+    color: $blue-color;
+}
+
+.sortIndicator {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 8px;
+}
+
+.arrowDesc,
+.arrowAsc {
+    width: 10px;
+    height: 6px;
+    background-color: $grey-color;
+    -webkit-mask-image: url('src/assets/icons/arrow.svg');
+    mask-image: url('src/assets/icons/arrow.svg');
+}
+
+.arrowAsc {
+    transform: rotate(180deg);
+    background-color: $blue-color;
+}

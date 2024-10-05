@@ -1,6 +1,7 @@
 import { useEffect, useMemo } from 'react';
 
 import { CallsTable, Loader } from '../../components';
+import { Filters } from '../../components/';
 import { getCalls } from '../../store/action-creators/calls';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { RootState } from '../../store/store';
@@ -31,6 +32,7 @@ export const Calls = () => {
   return (
     <main className={styles.calls}>
       {status === 'loading' && <Loader />}
+      <Filters />
       {status === 'success' && <CallsTable calls={data} />}
     </main>
   );
