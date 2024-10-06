@@ -1,6 +1,5 @@
 import { useEffect, useMemo } from 'react';
 
-import { Loader } from '../../components';
 import { getCalls } from '../../store/action-creators/calls';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { RootState } from '../../store/store';
@@ -9,9 +8,7 @@ import { CallsTable, Filters } from './components';
 import styles from './styles.module.scss';
 
 export const Calls = () => {
-  const { data, params, status } = useAppSelector(
-    (state: RootState) => state.calls
-  );
+  const { data, params } = useAppSelector((state: RootState) => state.calls);
   const dispatch = useAppDispatch();
 
   const callsData = useMemo(
@@ -31,9 +28,8 @@ export const Calls = () => {
 
   return (
     <main className={styles.calls}>
-      {status === 'loading' && <Loader />}
       <Filters />
-      {status === 'success' && <CallsTable calls={data} />}
+      <CallsTable calls={data} />
     </main>
   );
 };
