@@ -1,5 +1,5 @@
 import { CallTypes } from './CallTypes';
-import { CustomDatePicker } from './DatePicker/DatePicker';
+import { CustomDatePicker } from './DatePicker';
 import styles from './styles.module.scss';
 
 export const Filters = () => {

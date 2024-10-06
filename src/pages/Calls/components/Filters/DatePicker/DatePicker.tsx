@@ -125,7 +125,7 @@ export const CustomDatePicker = () => {
       );
   }, [startDate, endDate]);
 
-  const CustomDatePicker = (
+  const CustomDates = (
     <div className={styles.customDatePicker}>
       <div className={styles.titleDatePicker}>Указать даты</div>
       <div className={styles.dateInputContainer}>
@@ -164,7 +164,7 @@ export const CustomDatePicker = () => {
       <Dropdown
         options={options}
         onSelect={handleSelect}
-        CustomItem={CustomDatePicker}
+        CustomItem={CustomDates}
         customSelectedItem={dropdownText}
       />
     </section>
