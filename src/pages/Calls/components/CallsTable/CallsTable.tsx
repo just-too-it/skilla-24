@@ -24,7 +24,7 @@ export const CallsTable = ({ calls }: CallsTableProps) => {
         estimation: getRandomRating(),
       }))
     );
-  }, []);
+  }, [calls]);
 
   return (
     <table className={styles.table}>
