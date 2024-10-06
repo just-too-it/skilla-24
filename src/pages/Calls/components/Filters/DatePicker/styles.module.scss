@@ -13,7 +13,7 @@
     font-size: 12px;
     opacity: 0.87;
     padding-left: 12px;
-    height: 32px;
+    height: 16px;
 }
 
 .customDatePicker {
@@ -27,9 +27,8 @@
     display: flex;
     align-items: center;
     height: 28px;
-    margin-right: 30px;
     position: relative;
-    padding-right: 38px;
+    padding: 0 48px 0 12px;
 }
 
 .dateInput {
@@ -37,13 +36,13 @@
     background: transparent;
     font-size: 12px;
     color: $font-color-secondary;
-    width: 65px;
+    width: 70px;
     text-align: center;
     outline: none;
 }
 
 .calendarIcon {
     position: absolute;
-    right: -8px;
+    right: 14px;
     bottom: 0;
 }
