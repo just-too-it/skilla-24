@@ -1,6 +1,6 @@
-import { Dropdown } from "../../../../../components/Dropdown";
-import { setParams } from "../../../../../store/entities/calls/callsSlice";
-import { useAppDispatch, useAppSelector } from "../../../../../store/hooks";
+import { Dropdown } from '../../../../../components/Dropdown';
+import { setParams } from '../../../../../store/entities/calls/callsSlice';
+import { useAppDispatch, useAppSelector } from '../../../../../store/hooks';
 
 const options = ['Все типы', 'Входящие', 'Исходящие'];
 

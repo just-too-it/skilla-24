@@ -1,7 +1,7 @@
 @import '../../styles/helpers/variables.scss';
 
 .dropdown {
-    width: 133px;
+    min-width: 133px;
     background-color: transparent;
     position: relative;
     text-align: left;
@@ -19,13 +19,12 @@
 
 .options {
     position: absolute;
-    width: inherit;
+    min-width: 133px;
     background-color: #fff;
     margin-top: 12px;
     border-radius: 8px;
     box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
     z-index: 10;
-    overflow: hidden;
 }
 
 .option {
@@ -33,11 +32,22 @@
     padding: 7px 12px;
     font-size: 12px;
     line-height: 18px;
-    color: #2B2D33;
+    color: $font-color-secondary;
     cursor: pointer;
 
     &:hover {
         background-color: #DEE4FF;
+        color: $font-color-primary;
+
+        &:first-child {
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        &:last-child {
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
     }
 }
 

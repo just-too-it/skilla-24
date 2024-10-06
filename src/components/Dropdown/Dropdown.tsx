@@ -1,16 +1,23 @@
 import clsx from 'clsx';
-import { useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 
 import styles from './styles.module.scss';
 
 interface DropdownProps {
   options: string[];
   onSelect: (option: string) => void;
+  CustomItem?: ReactNode;
+  customSelectedItem?: string;
 }
 
-export const Dropdown = ({ options, onSelect }: DropdownProps) => {
+export const Dropdown = ({
+  options,
+  onSelect,
+  CustomItem,
+  customSelectedItem,
+}: DropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [selectedOption, setSelectedOption] = useState<string>(options[0]);
 
   const toggleDropdown = () => {
     setIsOpen((prev) => !prev);
@@ -22,10 +29,17 @@ export const Dropdown = ({ options, onSelect }: DropdownProps) => {
     setIsOpen(false);
   };
 
+  useEffect(() => {
+    if (customSelectedItem) {
+      setSelectedOption(customSelectedItem);
+      setIsOpen(false);
+    }
+  }, [customSelectedItem]);
+
   return (
     <div className={styles.dropdown}>
       <button onClick={toggleDropdown} className={styles.button}>
-        {selectedOption || 'Все типы'}
+        {selectedOption}
         <span
           className={clsx(styles.sortIndicator, {
             [styles.arrowAsc]: isOpen,
@@ -47,6 +61,9 @@ export const Dropdown = ({ options, onSelect }: DropdownProps) => {
               {option}
             </li>
           ))}
+          {CustomItem && (
+            <div className={styles.customItemContainer}>{CustomItem}</div>
+          )}
         </ul>
       )}
     </div>
