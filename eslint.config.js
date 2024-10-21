@@ -8,10 +8,8 @@ import eslintPluginImport from 'eslint-plugin-import';
 import pretiier from 'prettier';
 
 export default [
-  // Основная конфигурация JS
   js.configs.recommended,
 
-  // Конфигурация TypeScript
   {
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
@@ -28,9 +26,9 @@ export default [
       prettier: pretiier,
     },
     rules: {
-      ...tsPlugin.configs.recommended.rules, // Рекомендуемые правила TypeScript
-      ...reactHooks.configs.recommended.rules, // Рекомендуемые правила React Hooks
-      '@typescript-eslint/no-unused-vars': 'warn', // Пример TS правила
+      ...tsPlugin.configs.recommended.rules, 
+      ...reactHooks.configs.recommended.rules, 
+      '@typescript-eslint/no-unused-vars': 'warn', 
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
@@ -53,12 +51,11 @@ export default [
           },
         },
       ],
-      'import/newline-after-import': 'warn', // Новая строка после импортов
-      'import/no-duplicates': 'warn', // Предотвращение дублирования импортов
+      'import/newline-after-import': 'warn', 
+      'import/no-duplicates': 'warn', 
     },
   },
 
-  // Конфигурация для React
   {
     files: ['**/*.{jsx,tsx}'],
     plugins: { 'react-hooks': reactHooks },
